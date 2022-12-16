@@ -107,7 +107,7 @@ def make_knots(shotdat, spdeg, knotintervals):
 	knots = [ np.linspace(st0, stf, nall+1) for nall in nknots ]
 
 	for k, cn in enumerate(knots):
-
+		
 		if nknots[k] == 0:
 			knots[k] = np.array([])
 			continue
@@ -118,7 +118,7 @@ def make_knots(shotdat, spdeg, knotintervals):
 			if len(isetkn) > 2*(spdeg+2):
 				rmknot = np.append(rmknot, isetkn[spdeg+1:-spdeg-1])
 		if len(rmknot) > 0:
-			knots[k] = np.delete(knots[k], rmknot)
+			knots[k] = np.delete(knots[k], np.array(rmknot).astype('int'))
 
 		dkn = (stf-st0)/float(nknots[k])
 		addkn0 = np.array( [st0-dkn*(n+1) for n in reversed(range(spdeg))] )
